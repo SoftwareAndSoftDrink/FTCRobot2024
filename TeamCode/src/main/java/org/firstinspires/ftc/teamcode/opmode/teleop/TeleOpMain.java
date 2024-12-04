@@ -131,8 +131,8 @@ public class TeleOpMain extends OpMode {
         }
         else if (gamepad2.x && armIsInMoving) {
             slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_SCORING);
-            arm.setTargetRotation(Arm.ARM_ROTATION_SCORING);
-            intake.moveWristTo(Intake.WRIST_POSITION_SCORING);
+            arm.setTargetRotation(Arm.ARM_ROTATION_FRONT_SCORING);
+            intake.moveWristTo(Intake.WRIST_POSITION_FRONT_SCORING);
             slowMovement = true;
             armIsInMoving = false;
         }

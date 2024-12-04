@@ -32,7 +32,8 @@ public class Intake extends Module {
 
     public static double WRIST_POSITION_INTAKE = 0.60;
     public static double WRIST_POSITION_MOVING = 0.50;
-    public static double WRIST_POSITION_SCORING = 0.50;
+    public static double WRIST_POSITION_FRONT_SCORING = 0.50;
+    public static double WRIST_POSITION_BACK_SCORING = 0.75;
     public static double WRIST_POSITION_DEACTIVATED = 0.90;
     public static double WRIST_POSITION_START = 0.2;
 
