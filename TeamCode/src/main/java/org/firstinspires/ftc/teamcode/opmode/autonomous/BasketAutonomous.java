@@ -72,6 +72,10 @@ public class BasketAutonomous extends AutonomousBase {
     public static double HANG_FINAL_Y = 51;
     public static double HANG_FINAL_HEADING = -90;
 
+    public static long INTAKE1_PAUSE_MS = 10;
+    public static long INTAKE2_PAUSE_MS = 10;
+    public static long INTAKE3_PAUSE_MS = 500;
+
 
     /*
      * ! IMPORTANT !
@@ -119,18 +123,18 @@ public class BasketAutonomous extends AutonomousBase {
 
             /* Intake & score the 1st sample */
             moveRobotTo(intake1);
-            intakeSample(intake, arm, slide, driveTrain);
+            intakeSample(intake, arm, slide, driveTrain, INTAKE1_PAUSE_MS);
             scoreHighBasket(arm, slide, intake);
 
             /* Intake & score the 2nd sample */
             moveRobotTo(intake2);
-            intakeSample(intake, arm, slide, driveTrain);
+            intakeSample(intake, arm, slide, driveTrain, INTAKE2_PAUSE_MS);
             scoreHighBasket(arm, slide, intake);
 
-//            /* Intake & score the 3rd sample */
-//            moveRobotTo(intake3);
-//            intakeSample(intake, arm, slide, driveTrain);
-//            scoreHighBasket(arm, slide, intake);
+            /* Intake & score the 3rd sample */
+            moveRobotTo(intake3);
+            intakeSample(intake, arm, slide, driveTrain, INTAKE3_PAUSE_MS);
+            scoreHighBasket(arm, slide, intake);
 
             /* hang */
             arm.setTargetRotation(Arm.ARM_ROTATION_HANG_LVL1_SETUP);
@@ -190,7 +194,7 @@ public class BasketAutonomous extends AutonomousBase {
         waitForMotorUpdaters(500, arm, slide);
     }
 
-    protected void intakeSample(Intake intake, Arm arm, LinearSlide slide, AutonomousDriveTrain driveTrain) throws InterruptedException {
+    protected void intakeSample(Intake intake, Arm arm, LinearSlide slide, AutonomousDriveTrain driveTrain, long intakeWaitMs) throws InterruptedException {
         intake.grab();
         arm.setTargetRotation(Arm.ARM_ROTATION_INTAKE);
         slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_INTAKE);
@@ -207,6 +211,7 @@ public class BasketAutonomous extends AutonomousBase {
         waitForTime(INTAKE_FORWARD_DURATION_MS);
         driveTrain.enableDrivePID();
 
+        waitForTime(intakeWaitMs);
         intake.settle();
         arm.setTargetRotation(Arm.ARM_ROTATION_MOVING);
         slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_MOVING);
