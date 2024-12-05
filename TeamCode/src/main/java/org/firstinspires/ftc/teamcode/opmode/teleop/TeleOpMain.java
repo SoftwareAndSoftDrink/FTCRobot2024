@@ -6,6 +6,7 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.modules.*;
 
@@ -24,6 +25,7 @@ public class TeleOpMain extends OpMode {
     public static double SLOWER_SPEED_MULTIPLIER = 0.35;
     public static double INTAKE_WRIST_OFFSET_INCREMENT_AMOUNT = 0.1;
     public static double INIT_SLIDE_POSITION_OFFSET = -0.3;
+    public static long ARM_ROTATION_DELAY_INTAKE_MS = 500;
 
     private boolean slowMovement = false;
 
@@ -39,6 +41,10 @@ public class TeleOpMain extends OpMode {
 
     private final Gamepad prevGP1 = new Gamepad();
     private final Gamepad prevGP2 = new Gamepad();
+
+    private final ElapsedTime armDelayTimer = new ElapsedTime();
+    private double queuedArmRotation = 0;
+    private boolean armRotationIsQueued = false;
 
     @Override
     public void init() {
@@ -138,8 +144,10 @@ public class TeleOpMain extends OpMode {
         }
         else if (gamepad2.b && armIsInMoving) {
             slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_INTAKE);
-            arm.setTargetRotation(Arm.ARM_ROTATION_INTAKE);
             intake.moveWristTo(Intake.WRIST_POSITION_INTAKE);
+            queuedArmRotation = Arm.ARM_ROTATION_INTAKE;
+            armDelayTimer.reset();
+            armRotationIsQueued = true;
             slowMovement = true;
             armIsInMoving = false;
         }
@@ -173,6 +181,11 @@ public class TeleOpMain extends OpMode {
         }
         else {
             activateArm = false;
+        }
+
+        if (armRotationIsQueued && armDelayTimer.milliseconds() >= ARM_ROTATION_DELAY_INTAKE_MS) {
+            armRotationIsQueued = false;
+            arm.setTargetRotation(queuedArmRotation);
         }
 
         slide.updateMotorPowers();
