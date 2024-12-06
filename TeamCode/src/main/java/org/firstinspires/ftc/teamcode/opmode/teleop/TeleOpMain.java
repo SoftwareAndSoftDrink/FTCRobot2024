@@ -136,9 +136,9 @@ public class TeleOpMain extends OpMode {
             armIsInMoving = true;
         }
         else if (gamepad2.x && armIsInMoving) {
-            slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_SCORING);
-            arm.setTargetRotation(Arm.ARM_ROTATION_FRONT_SCORING);
-            intake.moveWristTo(Intake.WRIST_POSITION_FRONT_SCORING);
+            slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_SCORING_HIGH);
+            arm.setTargetRotation(Arm.ARM_ROTATION_FRONT_SCORING_HIGH);
+            intake.moveWristTo(Intake.WRIST_POSITION_FRONT_SCORING_HIGH);
             slowMovement = true;
             armIsInMoving = false;
         }
@@ -148,6 +148,13 @@ public class TeleOpMain extends OpMode {
             queuedArmRotation = Arm.ARM_ROTATION_INTAKE;
             armDelayTimer.reset();
             armRotationIsQueued = true;
+            slowMovement = true;
+            armIsInMoving = false;
+        }
+        else if (gamepad2.dpad_left && armIsInMoving) {
+            slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_SCORING_LOW);
+            arm.setTargetRotation(Arm.ARM_ROTATION_FRONT_SCORING_LOW);
+            intake.moveWristTo(Intake.WRIST_POSITION_FRONT_SCORING_LOW);
             slowMovement = true;
             armIsInMoving = false;
         }
