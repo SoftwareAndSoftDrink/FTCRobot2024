@@ -143,7 +143,9 @@ public abstract class AutonomousBase extends LinearOpMode {
     protected final void moveRobotTo(long timeoutMs, Pose2D destination) throws InterruptedException {
         final AutonomousDriveTrain driveTrain = moduleManager.getModule(AutonomousDriveTrain.class);
         driveTrain.setTargetPose(destination);
+        RobotLog.ii("AutonomousBase", "Moving from " + driveTrain.getRobotPose() + " to " + destination);
         waitForMotorUpdaters(timeoutMs, driveTrain);
+        RobotLog.ii("AutonomousBase", "Ended at " + driveTrain.getRobotPose());
     }
 
     /**
