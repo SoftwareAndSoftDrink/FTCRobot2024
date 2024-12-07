@@ -39,7 +39,7 @@ public class LinearSlide extends Module implements MotorPowerUpdater {
     public static class SlideConfig {
         public static double P_COEF = 0.01;
         public static double I_COEF = 0;
-        public static double D_COEF = 0.0003;
+        public static double D_COEF = 0.0002;
         public static double F_COEF = 0;
         public static double TOLERANCE = 25;
     }

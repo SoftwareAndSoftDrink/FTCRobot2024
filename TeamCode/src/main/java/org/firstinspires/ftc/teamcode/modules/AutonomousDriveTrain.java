@@ -28,7 +28,7 @@ public class AutonomousDriveTrain extends FieldCentricDriveTrain implements Moto
 
     // PID Coefficients for translation
     public static double TRANSLATE_P = 0.2;
-    public static double TRANSLATE_I = 0.006;
+    public static double TRANSLATE_I = 0.004;
     public static double TRANSLATE_D = 0.01;
 
     // PID Coefficients for rotation
