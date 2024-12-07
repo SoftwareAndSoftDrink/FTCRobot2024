@@ -27,8 +27,8 @@ public class AutonomousDriveTrain extends FieldCentricDriveTrain implements Moto
     ElapsedTime timer = new ElapsedTime();
 
     // PID Coefficients for translation
-    public static double TRANSLATE_P = 0.15;
-    public static double TRANSLATE_I = 0.001;
+    public static double TRANSLATE_P = 0.2;
+    public static double TRANSLATE_I = 0.006;
     public static double TRANSLATE_D = 0.01;
 
     // PID Coefficients for rotation
@@ -36,7 +36,7 @@ public class AutonomousDriveTrain extends FieldCentricDriveTrain implements Moto
     public static double ROTATE_I = 0;
     public static double ROTATE_D = 0.0;
 
-    public static double TRANSLATE_TOLERANCE = 0.5;
+    public static double TRANSLATE_TOLERANCE = 0.25;
     public static double ROTATE_TOLERANCE = 2;
 
     private boolean disabled = false;
