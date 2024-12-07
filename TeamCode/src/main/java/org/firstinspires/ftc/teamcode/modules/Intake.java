@@ -28,7 +28,7 @@ public class Intake extends Module {
     public static final String WRIST_SERVO_NAME = "Wrist Servo";
 
     public static double SERVO_SPEED_GRAB = 0.5;
-    public static double SERVO_SPEED_EJECT = 0.25;
+    public static double SERVO_SPEED_EJECT = 1;
 
     public static double WRIST_POSITION_INTAKE = 0.60;
     public static double WRIST_POSITION_MOVING = 0.50;
