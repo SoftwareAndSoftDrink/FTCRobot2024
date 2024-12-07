@@ -30,8 +30,8 @@ public class BasketAutonomous extends AutonomousBase {
     public static long INTAKE_ARM_SLIDE_MOVEMENT_TIMEOUT_MS = 1000;
     public static long HANG_MOVE_TO_FINAL_TIMEOUT_MS = 1000;
 
-    public static double SCORING_X = -19.5;
-    public static double SCORING_Y = 9.25;
+    public static double SCORING_X = -21;
+    public static double SCORING_Y = 10;
     public static double SCORING_HEADING = 133;
 
     public static double PARKING_X = 12;
@@ -52,21 +52,21 @@ public class BasketAutonomous extends AutonomousBase {
     @Deprecated
     public static double H3 = 25;
 
-    public static double INTAKE1_X = 3.5;
-    public static double INTAKE1_Y = 23.5;
+    public static double INTAKE1_X = 4.5;
+    public static double INTAKE1_Y = 27;
     public static double INTAKE1_HEADING = 60;
 
-    public static double INTAKE2_X = -5.5;
-    public static double INTAKE2_Y = 23.5;
+    public static double INTAKE2_X = -2.5;
+    public static double INTAKE2_Y = 27;
     public static double INTAKE2_HEADING = 61.5;
 
-    public static double INTAKE3_X = -7;
-    public static double INTAKE3_Y = 34;
+    public static double INTAKE3_X = -4;
+    public static double INTAKE3_Y = 39;
     public static double INTAKE3_HEADING = 90;
 
     public static double HANG_SETUP_X = -12;
-    public static double HANG_SETUP_Y = 49;
-    public static double HANG_SETUP_HEADING = -90;
+    public static double HANG_SETUP_Y = 60;
+    public static double HANG_SETUP_HEADING = -100;
 
     public static double HANG_FINAL_X = 3;
     public static double HANG_FINAL_Y = 49;

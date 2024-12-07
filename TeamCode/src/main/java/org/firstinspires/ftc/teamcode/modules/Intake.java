@@ -30,7 +30,7 @@ public class Intake extends Module {
     public static double SERVO_SPEED_GRAB = 0.5;
     public static double SERVO_SPEED_EJECT = 1;
 
-    public static double WRIST_POSITION_INTAKE = 0.60;
+    public static double WRIST_POSITION_INTAKE = 0.54;
     public static double WRIST_POSITION_MOVING = 0.50;
     public static double WRIST_POSITION_FRONT_SCORING_HIGH = 0.50;
     public static double WRIST_POSITION_FRONT_SCORING_LOW = 0.50;
