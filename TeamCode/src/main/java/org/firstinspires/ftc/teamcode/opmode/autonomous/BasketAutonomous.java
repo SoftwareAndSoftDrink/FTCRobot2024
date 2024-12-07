@@ -18,8 +18,8 @@ public class BasketAutonomous extends AutonomousBase {
     //config variables for positions
     public static double SAFE_MOVE_DISTANCE_X_AND_Y = 12;
 
-    public static long INTAKE_FORWARD_DURATION_MS = 500;
-    public static double INTAKE_FORWARD_POWER = 0.35;
+    public static long INTAKE_FORWARD_DURATION_MS = 450;
+    public static double INTAKE_FORWARD_POWER = 0.37;
 
     public static long OUTTAKE_DURATION_MS = 500;
 
@@ -61,7 +61,7 @@ public class BasketAutonomous extends AutonomousBase {
     public static double INTAKE2_HEADING = 61.5;
 
     public static double INTAKE3_X = -10;
-    public static double INTAKE3_Y = 36;
+    public static double INTAKE3_Y = 34;
     public static double INTAKE3_HEADING = 90;
 
     public static double HANG_SETUP_X = -12;
@@ -91,6 +91,14 @@ public class BasketAutonomous extends AutonomousBase {
     public final Pose2D intake3 = new Pose2D(AutonomousDriveTrain.TRANSLATE_UNIT, INTAKE3_X, INTAKE3_Y, AutonomousDriveTrain.ROTATE_UNIT, INTAKE3_HEADING);
 
     public final Pose2D scoring = new Pose2D(AutonomousDriveTrain.TRANSLATE_UNIT, SCORING_X, SCORING_Y, AutonomousDriveTrain.ROTATE_UNIT, SCORING_HEADING);
+
+    public final Pose2D postScore = new Pose2D(
+            DistanceUnit.INCH,
+            scoring.getX(DistanceUnit.INCH) + SAFE_MOVE_DISTANCE_X_AND_Y,
+            scoring.getY(DistanceUnit.INCH) + SAFE_MOVE_DISTANCE_X_AND_Y,
+            AngleUnit.DEGREES,
+            scoring.getHeading(AngleUnit.DEGREES)
+    );
 
     public final Pose2D parking = new Pose2D(AutonomousDriveTrain.TRANSLATE_UNIT, PARKING_X, PARKING_Y, AutonomousDriveTrain.ROTATE_UNIT, PARKING_HEADING);
 
@@ -180,13 +188,7 @@ public class BasketAutonomous extends AutonomousBase {
         intake.settle();
 
         // move a bit back from the basket so that the arm can safely move down
-        moveRobotTo(new Pose2D(
-                DistanceUnit.INCH,
-                scoring.getX(DistanceUnit.INCH) + SAFE_MOVE_DISTANCE_X_AND_Y,
-                scoring.getY(DistanceUnit.INCH) + SAFE_MOVE_DISTANCE_X_AND_Y,
-                AngleUnit.DEGREES,
-                scoring.getHeading(AngleUnit.DEGREES)
-        ));
+        moveRobotTo(postScore);
 
         arm.setTargetRotation(Arm.ARM_ROTATION_MOVING);
         slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_MOVING);
