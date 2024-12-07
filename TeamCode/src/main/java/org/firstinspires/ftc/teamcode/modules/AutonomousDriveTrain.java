@@ -106,7 +106,7 @@ public class AutonomousDriveTrain extends FieldCentricDriveTrain implements Moto
         super.setVelocity(xPower, yPower, hPower);
 
         // update all updatableMechanisms
-        for(MotorPowerUpdater mechanism : updatableMechanisms){
+        for(MotorPowerUpdater mechanism : updatableMechanisms) {
             mechanism.updateMotorPowers();
         }
     }
