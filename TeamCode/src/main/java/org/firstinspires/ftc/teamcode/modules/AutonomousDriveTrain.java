@@ -95,11 +95,6 @@ public class AutonomousDriveTrain extends FieldCentricDriveTrain implements Moto
             return; // If the movement PID is disabled, don't run the movement PID
         }
 
-        if (xController.atSetPoint() && yController.atSetPoint() && hController.atSetPoint()) {
-            super.setVelocity(0, 0, 0);
-            return;
-        }
-
         final Pose2D currentRobotPose = getRobotPose();
 
         // updates PID controllers with current robot position (for the given axis)
