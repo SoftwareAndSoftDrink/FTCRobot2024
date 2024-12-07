@@ -22,6 +22,9 @@ import java.util.function.BooleanSupplier;
  * A base class containing functionality common to all autonomous opmodes
  */
 public abstract class AutonomousBase extends LinearOpMode {
+
+    public static final String TAG = "AutonomousBase";
+
     @Config
     public static class AutonomousConstants {
         public static long DRIVE_TRAIN_PID_DEFAULT_TIMEOUT_MS = 5 * 1000; // 5 s * 1000 ms/s
@@ -50,14 +53,14 @@ public abstract class AutonomousBase extends LinearOpMode {
      * @throws InterruptedException This opmode has been stopped
      */
     private void waitUntil(BooleanSupplier conditionToStop) throws InterruptedException {
-        RobotLog.ii("AutonomousBase", "Begin wait");
+        RobotLog.ii(TAG, "Begin wait");
         while (!conditionToStop.getAsBoolean()) {
             if (isStopRequested()) {
                 throw new InterruptedException();
             }
             moduleManager.updateMotorPowerLoops();
         }
-        RobotLog.ii("AutonomousBase", "End wait");
+        RobotLog.ii(TAG, "End wait");
     }
 
     /**
@@ -69,6 +72,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     protected final void waitForTime(long timeoutMs) throws InterruptedException {
         final ElapsedTime run = new ElapsedTime();
         run.reset();
+        RobotLog.ii(TAG, "Waiting for " + timeoutMs + " ms");
         waitUntil(() -> run.time(TimeUnit.MILLISECONDS) >= timeoutMs);
     }
 
@@ -82,6 +86,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     protected final void waitForMotorUpdaters(long timeoutMs, MotorPowerUpdater ...mechanisms) throws InterruptedException {
         final ElapsedTime run = new ElapsedTime();
         run.reset();
+        RobotLog.ii(TAG, "Waiting for " + mechanisms.length + " PID loops with timeout of " + timeoutMs + " ms");
         // wait until mechanisms are done updating or timeout is reached, whichever comes first
         waitUntil(() -> run.time(TimeUnit.MILLISECONDS) >= timeoutMs ||
                 Arrays.stream(mechanisms).reduce( // true == stop waiting, false == keep waiting
@@ -107,6 +112,8 @@ public abstract class AutonomousBase extends LinearOpMode {
         final LinearSlide slide = moduleManager.getModule(LinearSlide.class);
         final Intake intake = moduleManager.getModule(Intake.class);
 
+        RobotLog.ii(TAG, "Resetting arm position");
+
         // get arm out of way
         slide.setTargetHeight(0);
         slide.updateMotorPowers();
@@ -124,6 +131,7 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     protected final void waitForEnd() throws InterruptedException {
         try {
+            RobotLog.ii(TAG, "Auto done");
             waitUntil(this::isStopRequested);
         }
         finally {
@@ -143,9 +151,9 @@ public abstract class AutonomousBase extends LinearOpMode {
     protected final void moveRobotTo(long timeoutMs, Pose2D destination) throws InterruptedException {
         final AutonomousDriveTrain driveTrain = moduleManager.getModule(AutonomousDriveTrain.class);
         driveTrain.setTargetPose(destination);
-        RobotLog.ii("AutonomousBase", "Moving from " + driveTrain.getRobotPose() + " to " + destination);
+        RobotLog.ii(TAG, "Moving from " + driveTrain.getRobotPose() + " to " + destination);
         waitForMotorUpdaters(timeoutMs, driveTrain);
-        RobotLog.ii("AutonomousBase", "Ended at " + driveTrain.getRobotPose());
+        RobotLog.ii(TAG, "Ended at " + driveTrain.getRobotPose());
     }
 
     /**
