@@ -56,9 +56,9 @@ public class BasketAutonomous extends AutonomousBase {
     public static double INTAKE1_Y = 23.5;
     public static double INTAKE1_HEADING = 60;
 
-    public static double INTAKE2_X = -6.5;
-    public static double INTAKE2_Y = 22.5;
-    public static double INTAKE2_HEADING = 59;
+    public static double INTAKE2_X = -5.5;
+    public static double INTAKE2_Y = 23.5;
+    public static double INTAKE2_HEADING = 63;
 
     public static double INTAKE3_X = -7;
     public static double INTAKE3_Y = 36;
@@ -68,13 +68,13 @@ public class BasketAutonomous extends AutonomousBase {
     public static double HANG_SETUP_Y = 49;
     public static double HANG_SETUP_HEADING = -90;
 
-    public static double HANG_FINAL_X = 0;
+    public static double HANG_FINAL_X = 3;
     public static double HANG_FINAL_Y = 49;
     public static double HANG_FINAL_HEADING = -90;
 
-    public static long INTAKE1_PAUSE_MS = 10;
-    public static long INTAKE2_PAUSE_MS = 10;
-    public static long INTAKE3_PAUSE_MS = 500;
+    public static long INTAKE1_PAUSE_MS = 30;
+    public static long INTAKE2_PAUSE_MS = 30;
+    public static long INTAKE3_PAUSE_MS = 1000;
 
 
     /*
