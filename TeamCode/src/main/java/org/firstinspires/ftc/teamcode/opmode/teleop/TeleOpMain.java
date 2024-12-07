@@ -143,6 +143,8 @@ public class TeleOpMain extends OpMode {
             armIsInMoving = false;
         }
         else if (gamepad2.b && armIsInMoving) {
+            // pre-move the arm so the delayed move doesn't slam the intake into the ground
+            arm.setTargetRotation(Arm.ARM_ROTATION_INTAKE_PRE);
             slide.setTargetHeight(LinearSlide.SLIDE_HEIGHT_INTAKE);
             intake.moveWristTo(Intake.WRIST_POSITION_INTAKE);
             queuedArmRotation = Arm.ARM_ROTATION_INTAKE;
