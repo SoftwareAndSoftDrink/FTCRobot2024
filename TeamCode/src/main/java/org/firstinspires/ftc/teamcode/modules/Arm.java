@@ -31,6 +31,9 @@ public class Arm extends Module implements MotorPowerUpdater {
      * The name of the left arm motor
      */
     public static final String LEFT_ARM_MOTOR_NAME = "Left Arm Motor";
+    /**
+     * The name of the right arm motor
+     */
     public static final String RIGHT_ARM_MOTOR_NAME = "Right Arm Motor";
 
     /**
